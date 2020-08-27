@@ -1,0 +1,11 @@
+.home-component{   
+    background-color:white;
+    width: 650px;
+    height: 25px;
+    border-color: black;
+    
+} 
+
+.panel-body {
+    overflow-y: hidden;  
+}
