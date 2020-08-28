@@ -1,11 +1,16 @@
 .home-component{   
-    background-color:white;
-    width: 650px;
-    height: 25px;
-    border-color: black;
-    
+    width: 650px;  
+    display: inline-flexbox;   
 } 
 
-.panel-body {
-    overflow-y: hidden;  
+.admin{
+    display: flow-root;
+}
+
+.gray{
+    background-color:darkgray;
+}
+
+.grey{
+    background-color:grey;
 }
