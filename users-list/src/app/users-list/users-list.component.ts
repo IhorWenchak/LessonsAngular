@@ -9,10 +9,18 @@ import { User } from '../shared/user';
 })
 export class UsersListComponent implements OnInit {
   usersList: User[] = [];
+  username: string;
+  name: string;
+  role: string;
+
   constructor(public userService: UsersService) { }
 
   ngOnInit(): void {
     this.usersList = this.userService.getUsersList();
+
+    setTimeout(()=>{
+      this.username = "Roman";
+    }, 2000)    
   }
 
   search(query: string){
@@ -24,7 +32,18 @@ export class UsersListComponent implements OnInit {
     this.usersList = this.userService.sortUsers(direction);
   }
 
-
+  addUser() {
+    this.userService.addUser({
+      id: 0,
+      name: this.name,
+      username: this.username,
+      email: "x758306x@gmail.com",
+      role: this.role,
+      "phone": "380 95 615 1538",
+      "website": ""
+    });
+    this.usersList = this.userService.getUsersList();
+  }
 
 
 }
