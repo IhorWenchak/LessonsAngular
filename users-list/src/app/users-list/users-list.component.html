@@ -15,7 +15,7 @@
 </div>
 
 
-<div clall="line">
+<div class="line footer">
   <mat-form-field appearance="outline">
     <mat-label>Username</mat-label>
     <input matInput placeholder="Username" [(ngModel)]="username">
@@ -33,23 +33,32 @@
       <mat-option value='User'>User</mat-option>
     </mat-select>
   </mat-form-field>
-
-  <button mat-raised-button color="primary" (click)="addUser()">Add</button>
-
+  <button mat-raised-button class="btn" color="primary" (click)="addUser()">Add</button>
 </div>
 
-
-<mat-selection-list #users>
-  <mat-list-option *ngFor="let user of usersList; let i=index" [ngClass]="{'grey':i%2 === 0}">
+<div *ngIf="usersList.length > 0; else empty">
+  <mat-selection-list #users (selectionChange)="selectItem(users.selectedOptions.selected)">
+    <mat-list-option [value]="user" *ngFor="let user of usersList; let i=index" [ngClass]="{'grey':i%2 === 0}">
+      <div>
+        <span class="home-component">{{i}} - {{user.name}}</span>
+        <span class="home-component"> |{{user.username}} | {{user.email}}|
+          {{user.phone}} | {{user.website}} </span>
+        <span *ngIf="user.role === 'Admin'" class="home-component">{{user.role}}</span>
+      </div>
+    </mat-list-option>
+  </mat-selection-list>
+ 
+  <div class="line footer">
     <div>
-      <span class="home-component">{{i}} - {{user.name}}</span>
-      <span class="home-component"> |{{user.username}} | {{user.email}}|
-        {{user.phone}} | {{user.website}} </span>
-      <span *ngIf="user.role === 'Admin'" class="admin">{{user.role}}</span>
+      Users selected: {{users.selectedOptions.selected.length}}
     </div>
-  </mat-list-option>
-</mat-selection-list>
+    <div>
+      <button mat-raised-button class="btn" color="warn" (click)="deleteUsers()">Delete</button>
+    </div>
+    </div>
+</div>
 
-<p>
-  Options selected: {{users.selectedOptions.selected.length}}
-</p>
+<ng-template #empty>
+  <div>Нема користувачів</div>
+</ng-template> 
+
