@@ -31,7 +31,6 @@ export class UsersService {
     })    
   }
 
-
   usersList: User[] = [
     {
       "id": 1,
